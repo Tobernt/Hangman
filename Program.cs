@@ -1,0 +1,73 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+
+namespace HangmanGame
+{
+    class Hangman
+    {
+        private string secretWord;
+        private int attemptsLeft;
+        private List<char> guessedLetters;
+
+        public Hangman()
+        {
+            // Initialisera variabler och listor
+            // Antal försök innan hängagubben ritas helt
+            secretWord = PickRandomWord();
+        }
+
+        private string PickRandomWord()
+        {
+            // Läs in ordlista från en textfil
+            string[] words = File.ReadAllLines("wordlist.txt");
+
+            // Välj ett slumpmässigt ord från listan
+            Random rand = new Random();
+            return words[rand.Next(0, words.Length)].ToLower(); // Slumpmässigt ord
+        }
+
+        public void StartGame()
+        {
+            // Implementera start av spelet
+        }
+
+        public void DisplayHangman()
+        {
+            // Implementera ASCII-grafik för hängagubben
+        }
+
+        public void DisplayWord()
+        {
+            // Implementera funktion för att visa gissade bokstäver i ordet
+        }
+
+        public void GuessLetter(char letter)
+        {
+            // Implementera logik för att gissa bokstäver
+        }
+
+        public void CheckGameEnd()
+        {
+            // Implementera logik för att kontrollera om spelet är slut (vinst/förlust)
+        }
+        public void AddWordToList()
+        {
+            // Implementera logik för att lägga till ord i listan
+        }
+
+        public void DisplayResult()
+        {
+            // Implementera funktion för att visa resultatet (vinst/förlust)
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Låt användaren gissa bokstäver och hantera spelets logik
+            // Använd de olika funktionerna från Hangman-klassen
+        }
+    }
+}
