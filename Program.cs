@@ -16,7 +16,10 @@ namespace HangmanGame
             // Initialisera variabler och listor
             // Antal försök innan hängagubben ritas helt
             secretWord = PickRandomWord();
+            attemptsLeft = 10;
 
+            guessedLetters = new List<char>();
+            splitWord = new List<char>(secretWord.ToCharArray());
         }
 
         public string PickRandomWord()
@@ -139,7 +142,18 @@ namespace HangmanGame
 
         public void DisplayWord()
         {
-            // Implementera funktion för att visa gissade bokstäver i ordet
+            foreach (char letter in splitWord)
+            {
+                if (guessedLetters.Contains(letter))
+                {
+                    Console.Write(letter + " ");
+                }
+                else
+                {
+                    Console.Write("_ ");
+                }
+            }
+            Console.WriteLine();
         }
 
         public void GuessLetter(char letter)
@@ -173,10 +187,10 @@ namespace HangmanGame
     {
         static void Main(string[] args)
         {
-//<<<<<<< HEAD
-
+            Hangman game = new Hangman();
             do
             {
+
                 Console.Write("> ");
                 string userInput = Console.ReadLine().Trim();
                 string[] argument = userInput.Split();
@@ -208,13 +222,13 @@ namespace HangmanGame
                 {
                     Console.WriteLine("Okänt kommando");
                 }
+                game.DisplayGuessedLetters();
+                game.DisplayWord();
 
             } while (true);
-//=======
-            Hangman game = new Hangman();
             // Låt användaren gissa bokstäver och hantera spelets logik
             // Använd de olika funktionerna från Hangman-klassen
-//>>>>>>> b813fe497916617874290a995bd6777791b6c61f
+
         }
     }
 }
