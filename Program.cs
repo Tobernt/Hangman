@@ -59,6 +59,13 @@ namespace HangmanGame
             // Implementera logik för att lägga till ord i listan
         }
 
+        public void DisplayGuessedLetters()
+        {
+            Console.WriteLine("Guessed letters: " + string.Join(", ", guessedLetters));
+            int lettersLeft = splitWord.Count - guessedLetters.Distinct().Count();
+            Console.WriteLine($"Letters left to guess: {lettersLeft}");
+        }
+
         public void DisplayResult()
         {
             // Implementera funktion för att visa resultatet (vinst/förlust)
