@@ -70,8 +70,20 @@ namespace HangmanGame
     {
         static void Main(string[] args)
         {
-            Hangman game = new Hangman();
-            // Continue implementing the game logic...
+            while(true)
+            {
+                string input = Console.ReadLine();
+                if(input == "help")
+                {
+                    Console.WriteLine("helping you");
+                }
+                else if(input == "nej") 
+                {
+                    Console.WriteLine("nej");
+                }
+            }
+            // Låt användaren gissa bokstäver och hantera spelets logik
+            // Använd de olika funktionerna från Hangman-klassen
         }
     }
 }
