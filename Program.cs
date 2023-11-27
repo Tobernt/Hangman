@@ -85,6 +85,10 @@ namespace HangmanGame
                 {
                     Console.WriteLine("ja");
                 }
+                else if (input == "!!!!!!!!")
+                {
+                    Console.WriteLine("!!!!!!!");
+                }
             }
             // Låt användaren gissa bokstäver och hantera spelets logik
             // Använd de olika funktionerna från Hangman-klassen
