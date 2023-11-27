@@ -35,6 +35,7 @@ namespace HangmanGame
         {
             // Implementera start av spelet
             Console.WriteLine("test test test");
+            Console.WriteLine("test2");
         }
 
         public void DisplayHangman()
