@@ -7,7 +7,7 @@ namespace HangmanGame
     class Hangman
     {
         private string secretWord;
-        private int attemptsLeft;
+        private int attemptsLeft; //Börjar med 10
         private List<char> guessedLetters;
         private List<char> splitWord;
 
@@ -53,6 +53,88 @@ namespace HangmanGame
         public void DisplayHangman()
         {
             // Implementera ASCII-grafik för hängagubben
+            // Updatera attemptsLeft sen anropa DisplayHangman() för att rita gubben beroende på hur många liv man har kvar
+            if (this.attemptsLeft == 9)
+            {
+                Console.WriteLine("\n\n\n\n\n\n");
+            }
+            else if (this.attemptsLeft == 8)
+            {
+                Console.WriteLine("");
+                for (int i = 0; i < 4; i++)
+                {
+                    Console.WriteLine("   |   ");
+                }
+            }
+            else if (this.attemptsLeft == 7)
+            {
+                Console.WriteLine("   __________");
+                for (int i = 0; i < 4; i++)
+                {
+                    Console.WriteLine("   |   ");
+                }
+            }
+            else if(this.attemptsLeft == 6)
+            {
+                Console.WriteLine("   __________");
+                Console.WriteLine("   |        |");
+                for (int i = 0; i < 3; i++)
+                {
+                    Console.WriteLine("   |   ");
+                }
+            }
+            else if(this.attemptsLeft==5)
+            {
+                Console.WriteLine("   __________");
+                Console.WriteLine("   |        |");
+                Console.WriteLine("   |        O");
+                for (int i = 0; i < 2; i++)
+                {
+                    Console.WriteLine("   |   ");
+                }
+            }
+            else if(attemptsLeft == 4)
+            {
+                Console.WriteLine("   __________");
+                Console.WriteLine("   |        |");
+                Console.WriteLine("   |        O");
+                Console.WriteLine("   |        |");
+                Console.WriteLine("   |   ");
+            }
+            else if(attemptsLeft == 3)
+            {
+                Console.WriteLine("   __________");
+                Console.WriteLine("   |        |");
+                Console.WriteLine("   |        O");
+                Console.WriteLine("   |        |");
+                Console.WriteLine("   |       /");
+            }
+            else if(attemptsLeft == 2) 
+            {
+                Console.WriteLine("   __________");
+                Console.WriteLine("   |        |");
+                Console.WriteLine("   |        O");
+                Console.WriteLine("   |        |");
+                Console.WriteLine(@"   |       / \");
+            }
+            else if(attemptsLeft == 1) 
+            {
+                Console.WriteLine("   __________");
+                Console.WriteLine("   |        |");
+                Console.WriteLine("   |        O");
+                Console.WriteLine("   |       /|");
+                Console.WriteLine(@"   |       / \");
+            }
+            else if(attemptsLeft == 0) 
+            {
+                Console.WriteLine("   __________");
+                Console.WriteLine("   |        |");
+                Console.WriteLine("   |        O");
+                Console.WriteLine(@"   |       /|\");
+                Console.WriteLine(@"   |       / \");
+            }
+            if (attemptsLeft < 9) { Console.WriteLine("   |   "); }
+            if (attemptsLeft <= 9) { Console.WriteLine("___|___"); }
         }
 
         public void DisplayWord()
@@ -91,7 +173,7 @@ namespace HangmanGame
     {
         static void Main(string[] args)
         {
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
             do
             {
@@ -128,11 +210,11 @@ namespace HangmanGame
                 }
 
             } while (true);
-=======
+//=======
             Hangman game = new Hangman();
             // Låt användaren gissa bokstäver och hantera spelets logik
             // Använd de olika funktionerna från Hangman-klassen
->>>>>>> b813fe497916617874290a995bd6777791b6c61f
+//>>>>>>> b813fe497916617874290a995bd6777791b6c61f
         }
     }
 }
