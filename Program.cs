@@ -226,8 +226,7 @@ namespace HangmanGame
                 game.DisplayWord();
 
             } while (true);
-            Hangman game = new Hangman();
-            Hangman game = new Hangman();
+
             // Låt användaren gissa bokstäver och hantera spelets logik
             // Använd de olika funktionerna från Hangman-klassen
 
