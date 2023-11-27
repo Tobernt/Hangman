@@ -9,22 +9,25 @@ namespace HangmanGame
         private string secretWord;
         private int attemptsLeft;
         private List<char> guessedLetters;
+        private List<char> splitWord;
 
         public Hangman()
         {
             // Initialisera variabler och listor
             // Antal försök innan hängagubben ritas helt
             secretWord = PickRandomWord();
+            
         }
 
-        private string PickRandomWord()
+        public string PickRandomWord()
         {
             // Läs in ordlista från en textfil
-            string[] words = File.ReadAllLines("wordlist.txt");
+            string[] words = File.ReadAllLines("../../../wordlist.txt");
 
             // Välj ett slumpmässigt ord från listan
             Random rand = new Random();
-            return words[rand.Next(0, words.Length)].ToLower(); // Slumpmässigt ord
+            return words[rand.Next(0, words.Length)].ToLower(); // Slumpmässigt ord 
+            splitWord = new List<char>(secretWord.ToCharArray());
         }
 
         public void StartGame()
@@ -66,8 +69,8 @@ namespace HangmanGame
     {
         static void Main(string[] args)
         {
-            // Låt användaren gissa bokstäver och hantera spelets logik
-            // Använd de olika funktionerna från Hangman-klassen
+            Hangman game = new Hangman();
+            // Continue implementing the game logic...
         }
     }
 }
