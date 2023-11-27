@@ -16,7 +16,8 @@ namespace HangmanGame
             // Initialisera variabler och listor
             // Antal försök innan hängagubben ritas helt
             secretWord = PickRandomWord();
-            
+            Console.WriteLine("The secret word is: " + secretWord);
+
         }
 
         public string PickRandomWord()
