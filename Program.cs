@@ -30,9 +30,24 @@ namespace HangmanGame
             splitWord = new List<char>(secretWord.ToCharArray());
         }
 
-        public void StartGame()
+        public static void StartGame()
         {
-            // Implementera start av spelet
+            bool gameIsActive = true;
+
+            do
+            {
+                if (!gameIsActive)
+                {
+                    //Bryter loop om spelet inte är aktivt
+                    Console.WriteLine("Spelet ej aktivt");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("spelet är aktivt");
+                    break;//bryter loopen för att inte loopa sönder
+                }
+            } while (gameIsActive);
         }
 
         public void DisplayHangman()
@@ -70,8 +85,41 @@ namespace HangmanGame
         static void Main(string[] args)
         {
 
-            // Låt användaren gissa bokstäver och hantera spelets logik
-            // Använd de olika funktionerna från Hangman-klassen
+            do
+            {
+                Console.Write("> ");
+                string userInput = Console.ReadLine().Trim();
+                string[] argument = userInput.Split();
+                string command = argument[0];
+
+                if (command == "avsluta")
+                {
+                    Console.WriteLine("Programmet avslutat");
+                    break;
+                }
+                else if (command == "starta")
+                {
+                    //Kommando för att starta nytt spel
+                    Hangman.StartGame();
+                }
+                else if (command == "hjälp")
+                {
+                    //Kommando för hjälpfunktion
+                }
+                else if (command == "nytt")
+                {
+                    //Kommando för nytt ord
+                }
+                else if (command == "språk")
+                {
+                    //Kommando för att ändra språk?
+                }
+                else
+                {
+                    Console.WriteLine("Okänt kommando");
+                }
+
+            } while (true);
         }
     }
 }
