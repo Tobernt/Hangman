@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
 namespace HangmanGame
 {
+
     class Hangman
     {
         private string secretWord;
@@ -52,6 +54,34 @@ namespace HangmanGame
                 }
             } while (gameIsActive);
         }
+        public static void NewGuessWord()   //stora/små bokstäver?
+        {
+            Console.WriteLine("Ange ett nytt ord");
+            string NewWord = Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(NewWord) && !NewWord.Contains(" ")) //checkar så orden inte har mellanslag, kan lägga in flera tecken att förbjuda som!"#¤
+            {
+                using (StreamWriter writer = new StreamWriter("../../../wordlist.txt", true))
+                {
+                    writer.WriteLine(NewWord);
+                }
+                Console.WriteLine($"{NewWord} lyckades att sparas!");
+            }
+            else
+            {
+                Console.WriteLine($"Något gick fel med ordet!");
+            }
+        }
+        public static void HelpMessage()
+        {
+            Console.WriteLine("starta   -      Påbörjar en ny runda                 ");
+            Console.WriteLine("nytt     -      Lägger till ett nytt ord i ordlistan ");
+            Console.WriteLine("språk    -      Ändrar språk på spelet     !NYI!     ");
+            Console.WriteLine("hjälp    -      Visar alla kommandon                 ");
+            Console.WriteLine("avsluta  -      Stänger av spelet                    ");
+            Console.WriteLine("---");
+        }
+
 
         public void DisplayHangman()
         {
@@ -187,6 +217,7 @@ namespace HangmanGame
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("hjälp = alla kommandon");
             Hangman game = new Hangman();
             do
             {
@@ -211,10 +242,13 @@ namespace HangmanGame
                 else if (command == "hjälp")
                 {
                     //Kommando för hjälpfunktion
+                    Hangman.HelpMessage();
                 }
                 else if (command == "nytt")
                 {
                     //Kommando för nytt ord
+                    Hangman.NewGuessWord();
+                    //Hur stora/små ord,
                 }
                 else if (command == "språk")
                 {
