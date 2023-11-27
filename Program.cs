@@ -34,6 +34,8 @@ namespace HangmanGame
         public void StartGame()
         {
             // Implementera start av spelet
+            Console.WriteLine("test test test");
+            Console.WriteLine("test2");
         }
 
         public void DisplayHangman()
@@ -70,6 +72,16 @@ namespace HangmanGame
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
+            while (true)
+            {
+                string input = Console.ReadLine();
+                if (input == "help")
+                {
+                    Console.WriteLine("helping you");
+                }
+                else if (input == "nej")
+=======
             while(true)
             {
                 string input = Console.ReadLine();
@@ -78,6 +90,7 @@ namespace HangmanGame
                     Console.WriteLine("helping you");
                 }
                 else if(input == "nej") 
+>>>>>>> 694ae51f0bde1a673e9f0f1f2984bdbe928410e4
                 {
                     Console.WriteLine("nej");
                 }
