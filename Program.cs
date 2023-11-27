@@ -205,6 +205,8 @@ namespace HangmanGame
                 {
                     //Kommando för att starta nytt spel
                     Hangman.StartGame();
+                    //Om bokstaven finns med i ordet:
+                    //Console.WriteLine($"Bokstaven '{variabelnamn?}' finns med i ordet");
                 }
                 else if (command == "hjälp")
                 {
