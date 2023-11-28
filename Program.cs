@@ -40,10 +40,11 @@ namespace HangmanGame
             Hangman game = new Hangman();
             bool gameIsActive = true;
             while (gameIsActive)
+
             {
                 game.DisplayGuessedLetters();
                 game.DisplayWord();
-                Console.Read();
+                Console.ReadLine();
             }
 
         }
