@@ -44,7 +44,7 @@ namespace HangmanGame
             {
                 game.DisplayGuessedLetters();
                 game.DisplayWord();
-
+                game.DisplayHangman();
                 // Get user input for guessing a letter
                 Console.WriteLine("Guess a letter:");
                 char guessedLetter = Console.ReadKey().KeyChar;
@@ -188,18 +188,9 @@ namespace HangmanGame
             Console.WriteLine();
         }
 
-        public void GuessLetter(char letter)
-        {
-            // Implementera logik för att gissa bokstäver
-        }
-
         public void CheckGameEnd()
         {
             // Implementera logik för att kontrollera om spelet är slut (vinst/förlust)
-        }
-        public void AddWordToList()
-        {
-            // Implementera logik för att lägga till ord i listan
         }
 
         public void DisplayGuessedLetters()
