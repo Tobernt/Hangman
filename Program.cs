@@ -44,8 +44,7 @@ namespace HangmanGame
             {
                 game.DisplayGuessedLetters();
                 game.DisplayWord();
-                Console.ReadLine();
-                Console.Clear();
+                Console.Read();
             }
 
         }
