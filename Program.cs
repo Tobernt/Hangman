@@ -49,8 +49,16 @@ namespace HangmanGame
                 Console.WriteLine("Guess a letter:");
                 char guessedLetter = Console.ReadKey().KeyChar;
 
+                // Check if the guessed letter is in the secret word
+                if (!game.splitWord.Contains(guessedLetter))
+                {
+                    // Decrement attemptsLeft only if the guessed letter is incorrect
+                    game.attemptsLeft--;
+                }
+
                 // Add the guessed letter to guessedLetters of the current game instance
                 game.guessedLetters.Add(guessedLetter);
+
 
                 Console.Clear();
             }
