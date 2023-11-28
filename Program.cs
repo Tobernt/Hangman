@@ -99,7 +99,7 @@ namespace HangmanGame
             // Updatera attemptsLeft sen anropa DisplayHangman() för att rita gubben beroende på hur många liv man har kvar
             if (this.attemptsLeft == 9)
             {
-                Console.WriteLine("\n\n\n\n\n\n");
+                Console.WriteLine("\n\n\n\n\n");
             }
             else if (this.attemptsLeft == 8)
             {
