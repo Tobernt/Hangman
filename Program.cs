@@ -37,7 +37,14 @@ namespace HangmanGame
 
         public static void StartGame()
         {
+            Hangman game = new Hangman();
             bool gameIsActive = true;
+            while (gameIsActive)
+            {
+                game.DisplayGuessedLetters();
+                game.DisplayWord();
+                break;
+            }
 
             do
             {
@@ -218,7 +225,6 @@ namespace HangmanGame
         static void Main(string[] args)
         {
             Console.WriteLine("hjälp = alla kommandon");
-            Hangman game = new Hangman();
             do
             {
 
@@ -258,8 +264,6 @@ namespace HangmanGame
                 {
                     Console.WriteLine("Okänt kommando");
                 }
-                game.DisplayGuessedLetters();
-                game.DisplayWord();
 
             } while (true);
 
