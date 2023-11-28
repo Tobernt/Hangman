@@ -44,7 +44,15 @@ namespace HangmanGame
             {
                 game.DisplayGuessedLetters();
                 game.DisplayWord();
-                Console.Read();
+
+                // Get user input for guessing a letter
+                Console.WriteLine("Guess a letter:");
+                char guessedLetter = Console.ReadKey().KeyChar;
+
+                // Add the guessed letter to guessedLetters of the current game instance
+                game.guessedLetters.Add(guessedLetter);
+
+                Console.Clear();
             }
 
         }
@@ -196,7 +204,8 @@ namespace HangmanGame
 
         public void DisplayGuessedLetters()
         {
-            Console.WriteLine("Guessed letters: " + string.Join(", ", guessedLetters));
+            Console.WriteLine("Guessed letters: " + string.Join(", ", guessedLetters)); // Access guessedLetters directly
+
             int lettersLeft = splitWord.Count - guessedLetters.Distinct().Count();
             Console.WriteLine($"Letters left to guess: {lettersLeft}");
         }
