@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
+using System.Diagnostics.SymbolStore;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 
 namespace HangmanGame
 {
 
     class Hangman
     {
+        public bool Vinst = false;
         private string secretWord;
         private int attemptsLeft; //Börjar med 10
         private List<char> guessedLetters;
@@ -61,6 +65,32 @@ namespace HangmanGame
 
 
                 Console.Clear();
+                if (game.attemptsLeft <= 0)
+                {
+                    game.DisplayHangman();
+                    game.DisplayWord();
+                    gameIsActive = false;
+
+                    Console.WriteLine("Åh nej, du har förlorat!");
+                    Console.WriteLine($"'{game.secretWord}' var ditt ord!");
+                    Console.WriteLine("Tryck Enter för att återgå till meyn");
+
+                    Console.ReadLine();
+                    Console.Clear();
+                }
+                else if (game.Vinst)
+                {
+
+                    game.DisplayHangman();
+                    game.DisplayWord();
+                    gameIsActive = false;
+
+                    Console.WriteLine("Grattis du gissade rätt på ordet!");
+                    Console.WriteLine("Tryck Enter för att återgå till meyn");
+
+                    Console.ReadLine();
+                    Console.Clear();
+                }
             }
 
         }
@@ -79,7 +109,7 @@ namespace HangmanGame
             }
             else
             {
-                Console.WriteLine($"Något gick fel med ordet!");
+                Console.WriteLine("Något gick fel med ordet!");
             }
         }
         public static void HelpMessage()
@@ -196,22 +226,16 @@ namespace HangmanGame
             Console.WriteLine();
         }
 
-        public void CheckGameEnd()
-        {
-            // Implementera logik för att kontrollera om spelet är slut (vinst/förlust)
-        }
-
         public void DisplayGuessedLetters()
         {
             Console.WriteLine("Guessed letters: " + string.Join(", ", guessedLetters)); // Access guessedLetters directly
 
             int lettersLeft = splitWord.Count - guessedLetters.Distinct().Count();
             Console.WriteLine($"Letters left to guess: {lettersLeft}");
-        }
-
-        public void DisplayResult()
-        {
-            // Implementera funktion för att visa resultatet (vinst/förlust)
+            if (lettersLeft == 1)
+            {
+                Vinst = true;
+            }
         }
     }
 
