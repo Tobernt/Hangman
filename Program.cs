@@ -50,7 +50,7 @@ namespace HangmanGame
                 game.DisplayWord();
                 game.DisplayHangman();
                 // Get user input for guessing a letter
-                Console.WriteLine("Guess a letter:");
+                Console.Write("Guess a letter: ");
                 char guessedLetter = Console.ReadKey().KeyChar;
 
                 // Check if the guessed letter is in the secret word
@@ -65,6 +65,16 @@ namespace HangmanGame
 
 
                 Console.Clear();
+
+                if (!game.splitWord.Contains(guessedLetter))
+                {
+                    Console.WriteLine($"Bokstaven '{guessedLetter}' finns inte med i ordet");
+                }
+                else
+                {
+                    Console.WriteLine($"Bokstaven '{guessedLetter}' finns med i ordet");
+                }
+
                 if (game.attemptsLeft <= 0)
                 {
                     game.DisplayHangman();
@@ -130,6 +140,10 @@ namespace HangmanGame
             if (this.attemptsLeft == 9)
             {
                 Console.WriteLine("\n\n\n\n\n");
+            }
+            else if(this.attemptsLeft == 10)
+            {
+                Console.WriteLine("\n\n\n\n\n\n");
             }
             else if (this.attemptsLeft == 8)
             {
@@ -261,8 +275,6 @@ namespace HangmanGame
                 {
                     //Kommando för att starta nytt spel
                     Hangman.StartGame();
-                    //Om bokstaven finns med i ordet:
-                    //Console.WriteLine($"Bokstaven '{variabelnamn?}' finns med i ordet");
                 }
                 else if (command == "hjälp")
                 {
