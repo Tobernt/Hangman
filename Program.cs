@@ -298,7 +298,8 @@ namespace HangmanGame
                 }
                 else if (command == "språk")
                 {
-                    //Kommando för att ändra språk?
+                    //Kommando för att ändra språk
+                    Console.WriteLine("NYI");
                 }
                 else
                 {
