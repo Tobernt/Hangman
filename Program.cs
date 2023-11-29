@@ -136,6 +136,7 @@ namespace HangmanGame
         public void DisplayHangman()
         {
             // Implementera ASCII-grafik för hängagubben
+            Console.WriteLine($"Lives left: {attemptsLeft}/10");
             // Updatera attemptsLeft sen anropa DisplayHangman() för att rita gubben beroende på hur många liv man har kvar
             if (this.attemptsLeft == 9)
             {
@@ -244,9 +245,17 @@ namespace HangmanGame
         {
             Console.WriteLine("Guessed letters: " + string.Join(", ", guessedLetters)); // Access guessedLetters directly
 
-            int lettersLeft = splitWord.Count - guessedLetters.Distinct().Count();
+            int lettersLeft = 0;
+            foreach (char letter in splitWord)
+            {
+                if (!guessedLetters.Contains(letter))
+                {
+                    lettersLeft++;
+                }
+            }
+
             Console.WriteLine($"Letters left to guess: {lettersLeft}");
-            if (lettersLeft == 1)
+            if (lettersLeft == 0)
             {
                 Vinst = true;
             }
