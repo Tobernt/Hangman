@@ -230,9 +230,17 @@ namespace HangmanGame
         {
             Console.WriteLine("Guessed letters: " + string.Join(", ", guessedLetters)); // Access guessedLetters directly
 
-            int lettersLeft = splitWord.Count - guessedLetters.Distinct().Count();
+            int lettersLeft = 0;
+            foreach (char letter in splitWord)
+            {
+                if (!guessedLetters.Contains(letter))
+                {
+                    lettersLeft++;
+                }
+            }
+
             Console.WriteLine($"Letters left to guess: {lettersLeft}");
-            if (lettersLeft == 1)
+            if (lettersLeft == 0)
             {
                 Vinst = true;
             }
