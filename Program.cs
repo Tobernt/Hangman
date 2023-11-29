@@ -126,6 +126,7 @@ namespace HangmanGame
         public void DisplayHangman()
         {
             // Implementera ASCII-grafik för hängagubben
+            Console.WriteLine($"Lives left: {attemptsLeft}/10");
             // Updatera attemptsLeft sen anropa DisplayHangman() för att rita gubben beroende på hur många liv man har kvar
             if (this.attemptsLeft == 9)
             {
