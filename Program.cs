@@ -88,16 +88,22 @@ namespace HangmanGame
                     Console.ReadLine();
                     Console.Clear();
                 }
-                else if (game.Vinst)
+                if (game.Vinst || game.AllLettersGuessed())
                 {
-
                     game.DisplayHangman();
                     game.DisplayWord();
                     gameIsActive = false;
 
-                    Console.WriteLine("Grattis du gissade rätt på ordet!");
-                    Console.WriteLine("Tryck Enter för att återgå till meyn");
+                    if (game.Vinst)
+                    {
+                        Console.WriteLine("Grattis du gissade rätt på ordet!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Du gissade alla bokstäver korrekt!");
+                    }
 
+                    Console.WriteLine("Tryck Enter för att återgå till menyn");
                     Console.ReadLine();
                     Console.Clear();
                 }
@@ -243,7 +249,10 @@ namespace HangmanGame
 
         public void DisplayGuessedLetters()
         {
-            Console.WriteLine("Guessed letters: " + string.Join(", ", guessedLetters)); // Access guessedLetters directly
+            // Använder HashSet för att tabort dublicerade bokstäver från guessedLetters
+            HashSet<char> uniqueGuessedLetters = new HashSet<char>(guessedLetters);
+
+            Console.WriteLine("Guessed letters: " + string.Join(", ", uniqueGuessedLetters));
 
             int lettersLeft = 0;
             foreach (char letter in splitWord)
@@ -259,6 +268,17 @@ namespace HangmanGame
             {
                 Vinst = true;
             }
+        }
+        public bool AllLettersGuessed()
+        {
+            foreach (char letter in splitWord)
+            {
+                if (!guessedLetters.Contains(letter))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 
