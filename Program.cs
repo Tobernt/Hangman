@@ -240,13 +240,10 @@ namespace HangmanGame
             }
 
             Console.WriteLine($"Letters left to guess: {lettersLeft}");
-                if (lettersLeft == 0)
-                {
-                    {
-                        Vinst = true;
-                    }
-                }
-
+            if (lettersLeft == 1)
+            {
+                Vinst = true;
+            }
         }
     }
 
