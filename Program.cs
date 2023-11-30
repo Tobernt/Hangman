@@ -147,7 +147,7 @@ namespace HangmanGame
         {
             Console.WriteLine("start          -      Begin a new round of hangman                  ");
             Console.WriteLine("new            -      Create a new word to the wordlist             ");
-            Console.WriteLine("language       -      Change the langugage     !NYI!                ");
+            Console.WriteLine("language       -      Change between english and swedish wordlist   ");
             Console.WriteLine("help           -      Display all commands                          ");
             Console.WriteLine("quit           -      Quit the program                              ");
             Console.WriteLine("!              -      Quit the active game                          ");
