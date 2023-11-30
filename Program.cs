@@ -12,13 +12,13 @@ namespace HangmanGame
     {
         static char currentLanguage = 's';
 
-        class Hangman
-        {
-            public bool Vinst = false;
-            private string secretWord;
-            private int attemptsLeft; //Börjar med 10
-            private List<char> guessedLetters;
-            private List<char> splitWord;
+    class Hangman
+    {
+        public bool Victory = false;
+        private string secretWord;
+        private int attemptsLeft; //Börjar med 10
+        private List<char> guessedLetters;
+        private List<char> splitWord;
 
             public Hangman()
             {
@@ -76,19 +76,19 @@ namespace HangmanGame
 
                     Console.Clear();
 
-                    if (guessedLetter == '!')
-                    {
-                        Console.WriteLine("Avslutar spelet, Återgår till menyn");
-                        gameIsActive = false;
-                    }
-                    else if (!game.splitWord.Contains(guessedLetter))
-                    {
-                        Console.WriteLine($"Bokstaven '{guessedLetter}' finns inte med i ordet");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Bokstaven '{guessedLetter}' finns med i ordet");
-                    }
+                if (guessedLetter == '!')
+                {
+                    Console.WriteLine("Quitting the game, returning to the meny");
+                    gameIsActive = false;
+                }
+                else if (!game.splitWord.Contains(guessedLetter))
+                {
+                    Console.WriteLine($"The letter '{guessedLetter}' dont are not in the word");
+                }
+                else
+                {
+                    Console.WriteLine($"The letter '{guessedLetter}' are in the word");
+                }
 
                     if (game.attemptsLeft <= 0)
                     {
@@ -96,74 +96,63 @@ namespace HangmanGame
                         game.DisplayWord();
                         gameIsActive = false;
 
-                        Console.WriteLine("Åh nej, du har förlorat!");
-                        Console.WriteLine($"'{game.secretWord}' var ditt ord!");
-                        Console.WriteLine("Tryck Enter för att återgå till meyn");
+                    Console.WriteLine("Oh no! you have lost!");
+                    Console.WriteLine($"'{game.secretWord}' was your word!");
+                    Console.WriteLine("Press Enter to return to the meny");
 
-                        Console.ReadLine();
-                        Console.Clear();
-                    }
-                    if (game.Vinst || game.AllLettersGuessed())
-                    {
-                        game.DisplayHangman();
-                        game.DisplayWord();
-                        gameIsActive = false;
-
-                        if (game.Vinst)
-                        {
-                            Console.WriteLine("Grattis du gissade rätt på ordet!");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Du gissade alla bokstäver korrekt!");
-                        }
-
-                        Console.WriteLine("Tryck Enter för att återgå till menyn");
-                        Console.ReadLine();
-                        Console.Clear();
-                    }
+                    Console.ReadLine();
+                    Console.Clear();
                 }
-
-            }
-            public static void NewGuessWord()   //stora/små bokstäver?
-            {
-                Console.WriteLine("Ange ett nytt ord");
-                string NewWord = Console.ReadLine();
-
-                if (!string.IsNullOrEmpty(NewWord) && !NewWord.Contains(" ")) //checkar så orden inte har mellanslag, kan lägga in flera tecken att förbjuda som!"#¤
+                if (game.Victory || game.AllLettersGuessed())
                 {
-                    if (currentLanguage == 's')
+                    game.DisplayHangman();
+                    game.DisplayWord();
+                    gameIsActive = false;
+
+                    if (game.Victory)
                     {
-                        using (StreamWriter writer = new StreamWriter("../../../wordlistSwedish.txt", true))
-                        {
-                            writer.WriteLine(NewWord);
-                        }
-                        Console.WriteLine($"{NewWord} lyckades att sparas!");
+                        Console.WriteLine("Congratulation, you have guessed the word!");
                     }
                     else
                     {
-                        using (StreamWriter writer = new StreamWriter("../../../wordlistEnglish.txt", true))
-                        {
-                            writer.WriteLine(NewWord);
-                        }
-                        Console.WriteLine($"{NewWord} lyckades att sparas!");
+                        Console.WriteLine("You have guessed all the letters correctly!");
                     }
-                }
-                else
-                {
-                    Console.WriteLine("Något gick fel med ordet!");
+
+                    Console.WriteLine("Press Enter to return to the meny");
+                    Console.ReadLine();
+                    Console.Clear();
                 }
             }
-            public static void HelpMessage()
+
+        }
+        public static void NewGuessWord()   //stora/små bokstäver?
+        {
+            Console.WriteLine("Enter a new word");
+            string NewWord = Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(NewWord) && !NewWord.Contains(" ")) //checkar så orden inte har mellanslag, kan lägga in flera tecken att förbjuda som!"#¤
             {
-                Console.WriteLine("starta   -      Påbörjar en ny runda                 ");
-                Console.WriteLine("nytt     -      Lägger till ett nytt ord i ordlistan ");
-                Console.WriteLine("språk    -      Ändrar språk på spelet     !NYI!     ");
-                Console.WriteLine("hjälp    -      Visar alla kommandon                 ");
-                Console.WriteLine("avsluta  -      Stänger av spelet                    ");
-                Console.WriteLine("!        -      Stänger av aktivt spel               ");
-                Console.WriteLine("---");
+                using (StreamWriter writer = new StreamWriter("../../../wordlist.txt", true))
+                {
+                    writer.WriteLine(NewWord);
+                }
+                Console.WriteLine($"{NewWord} successfully saved!");
             }
+            else
+            {
+                Console.WriteLine("Something went wrong with the word!");
+            }
+        }
+        public static void HelpMessage()
+        {
+            Console.WriteLine("start          -      Begin a new round of hangman                  ");
+            Console.WriteLine("new            -      Create a new word to the wordlist             ");
+            Console.WriteLine("language       -      Change the langugage     !NYI!                ");
+            Console.WriteLine("help           -      Display all commands                          ");
+            Console.WriteLine("quit           -      Quit the program                              ");
+            Console.WriteLine("!              -      Quit the active game                          ");
+            Console.WriteLine("---");
+        }
 
 
             public void DisplayHangman()
@@ -290,29 +279,28 @@ namespace HangmanGame
                     }
                 }
 
-                Console.WriteLine($"Letters left to guess: {lettersLeft}");
-                if (lettersLeft == 0)
-                {
-                    Vinst = true;
-                }
-            }
-            public bool AllLettersGuessed()
+            Console.WriteLine($"Letters left to guess: {lettersLeft}");
+            if (lettersLeft == 0)
             {
-                foreach (char letter in splitWord)
-                {
-                    if (!guessedLetters.Contains(letter))
-                    {
-                        return false;
-                    }
-                }
-                return true;
+                Victory = true;
             }
         }
+        public bool AllLettersGuessed()
+        {
+            foreach (char letter in splitWord)
+            {
+                if (!guessedLetters.Contains(letter))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
 
         static void Main(string[] args)
         {
-            //char currentLanguage = 's';
-            Console.WriteLine("hjälp = alla kommandon");
+            Console.WriteLine("help = all commands");
             do
             {
 
@@ -321,28 +309,28 @@ namespace HangmanGame
                 string[] argument = userInput.Split();
                 string command = argument[0];
 
-                if (command == "avsluta")
+                if (command == "quit")
                 {
-                    Console.WriteLine("Programmet avslutat");
+                    Console.WriteLine("Exiting the program");
                     break;
                 }
-                else if (command == "starta")
+                else if (command == "start")
                 {
                     //Kommando för att starta nytt spel
                     Hangman.StartGame();
                 }
-                else if (command == "hjälp")
+                else if (command == "help")
                 {
                     //Kommando för hjälpfunktion
                     Hangman.HelpMessage();
                 }
-                else if (command == "nytt")
+                else if (command == "new")
                 {
                     //Kommando för nytt ord
                     Hangman.NewGuessWord();
                     //Hur stora/små ord,
                 }
-                else if (command == "språk")
+                else if (command == "language")
                 {
                     //Kommando för att ändra språk
                     Console.Write($"Currently selected language is ");
@@ -372,7 +360,7 @@ namespace HangmanGame
                 }
                 else
                 {
-                    Console.WriteLine("Okänt kommando");
+                    Console.WriteLine("Unknown command");
                 }
 
             } while (true);
