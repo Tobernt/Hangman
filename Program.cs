@@ -317,6 +317,7 @@ namespace HangmanGame
                 else if (command == "start")
                 {
                     //Kommando för att starta nytt spel
+                    Console.Clear();
                     Hangman.StartGame();
                 }
                 else if (command == "help")
