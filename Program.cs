@@ -51,6 +51,10 @@ namespace HangmanGame
 
             public static void StartGame()
             {
+
+                // Låt användaren gissa bokstäver och hantera spelets logik
+                // Använd de olika funktionerna från Hangman-klassen
+
                 Hangman game = new Hangman();
                 bool gameIsActive = true;
                 while (gameIsActive)
@@ -376,10 +380,6 @@ namespace HangmanGame
                 }
 
             } while (true);
-
-            // Låt användaren gissa bokstäver och hantera spelets logik
-            // Använd de olika funktionerna från Hangman-klassen
-
         }
     }
 }
