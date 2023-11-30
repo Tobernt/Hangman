@@ -66,7 +66,12 @@ namespace HangmanGame
 
                 Console.Clear();
 
-                if (!game.splitWord.Contains(guessedLetter))
+                if (guessedLetter == '!')
+                {
+                    Console.WriteLine("Avslutar spelet, Återgår till menyn");
+                    gameIsActive = false;
+                }
+                else if (!game.splitWord.Contains(guessedLetter))
                 {
                     Console.WriteLine($"Bokstaven '{guessedLetter}' finns inte med i ordet");
                 }
@@ -135,6 +140,7 @@ namespace HangmanGame
             Console.WriteLine("språk    -      Ändrar språk på spelet     !NYI!     ");
             Console.WriteLine("hjälp    -      Visar alla kommandon                 ");
             Console.WriteLine("avsluta  -      Stänger av spelet                    ");
+            Console.WriteLine("!        -      Stänger av aktivt spel               ");
             Console.WriteLine("---");
         }
 
