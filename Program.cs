@@ -132,12 +132,23 @@ namespace HangmanGame
 
             if (!string.IsNullOrEmpty(NewWord) && !NewWord.Contains(" ")) //checkar så orden inte har mellanslag, kan lägga in flera tecken att förbjuda som!"#¤
             {
-                using (StreamWriter writer = new StreamWriter("../../../wordlist.txt", true))
-                {
-                    writer.WriteLine(NewWord);
-                }
-                Console.WriteLine($"{NewWord} successfully saved!");
-            }
+                    if (currentLanguage == 's')
+                    {
+                        using (StreamWriter writer = new StreamWriter("../../../wordlistSwedish.txt", true))
+                        {
+                            writer.WriteLine(NewWord);
+                        }
+                        Console.WriteLine($"{NewWord} successfully saved!");
+                    }
+                    else
+                    {
+                        using (StreamWriter writer = new StreamWriter("../../../wordlistEnglish.txt", true))
+                        {
+                            writer.WriteLine(NewWord);
+                        }
+                        Console.WriteLine($"{NewWord} successfully saved!");
+                    }
+            }        
             else
             {
                 Console.WriteLine("Something went wrong with the word!");

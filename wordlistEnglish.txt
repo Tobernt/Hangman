@@ -1,3 +1,5 @@
 cool
 apples
 oranges
+city
+bike
